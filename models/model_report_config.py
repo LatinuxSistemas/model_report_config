@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp import models, api, fields, _
+from openerp import models, fields, _
 
 
 class IrModelReportConfiguration(models.Model):
@@ -27,10 +27,8 @@ class IrModelReportConfiguration(models.Model):
     _description = 'Retrieve a report action name by model'
 
     model_id = fields.Many2one('ir.model', string='Model', required=True)
-    action_id = fields.Many2one('ir.actions.report.xml', string='Action', required=True,)
-                                #domain=[('model', '=', 'model_id.name')])
+    action_id = fields.Many2one('ir.actions.report.xml', string='Action', required=True)
 
     _sql_constraints = [
-        ('uniq_model_action_check', 'unique(model_id, action_id)',
-         _('ERROR: Just one report per model is allowed!')),
+        ('uniq_model_check', 'unique(model_id)', _('ERROR: Just one report by model is allowed!')),
     ]

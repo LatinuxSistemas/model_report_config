@@ -29,6 +29,7 @@
     'website': 'http://www.latinux.com.ar/',
     'depends': [
         'account',
+        'report',
     ],
     'init_xml': [],
     'data': [

@@ -27,11 +27,9 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def invoice_print(self):
-        #self.ensure_one()
+        self.ensure_one()
         self.sent = True
         model = self.env['ir.model'].search([("model", "=", "account.invoice")])
-        print model
         config = self.env["ir.model.report.configuration"].search([("model_id", "=", model.id)])
-        print config
 
         return self.env['report'].get_action(self, config.action_id.report_name)

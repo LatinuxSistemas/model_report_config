@@ -2,24 +2,40 @@
 <openerp>
     <data>
 
-        <record id="view_wizard_model_report_config_form" model="ir.ui.view">
-            <field name="name">wizard.model.report.config.form</field>
+        <record id="view_wizard_model_report_config_form0" model="ir.ui.view">
+            <field name="name">wizard.model.report.config.form0</field>
             <field name="model">wizard.model.report.config</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
             <form string="Reports Configuration" col="4" version="7.0">
                 <group colspan="2" string="Models">
-                    <field name="config_ids" nolabel="1" widget="one2many_list">
-                        <tree editable="bottom">
-                            <field name="model_id"/>
-                            <field name="action_id"
-                                attrs="{'readonly': [('model_id','=', False)]}"/>
-                        </tree>
-                    </field> 
+                    <field name="model_id"/>
                 </group>
                 <footer>
-                    <button type="object" name="button_done" string="Done"
+                    <button type="object" name="button_continue" string="Continue"
                         class="oe_highlight"/>
+                    <button type="special" special="cancel" string="Cancel"
+                        class="oe_link"/>
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="view_wizard_model_report_config_form1" model="ir.ui.view">
+            <field name="name">wizard.model.report.config.form1</field>
+            <field name="model">wizard.model.report.config</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+            <form string="Reports Configuration" col="4" version="7.0">
+                <group colspan="2" string="Reports">
+                    <field name="action_id" required="1"/>
+                    <field name="override"/>
+                </group>
+                <footer>
+                    <button type="object" name="button_done" string="Save and Close"
+                        class="oe_highlight"/>
+                    <button type="object" name="button_done" string="Save and Continue"
+                        context="{'continue': True}"/>
                     <button type="special" special="cancel" string="Cancel"
                         class="oe_link"/>
                 </footer>
