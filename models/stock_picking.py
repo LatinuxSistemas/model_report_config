@@ -19,6 +19,15 @@
 #
 ##############################################################################
 
-import model_report_config
-import account_invoice
-import stock_picking
+from openerp import models, api
+
+
+class StockPicking(models.Model):
+    _inherit = 'stock.picking'
+
+    @api.multi
+    def do_print_picking(self):
+        model = self.env['ir.model'].search([("model", "=", "stock.picking")])
+        config = self.env["ir.model.report.configuration"].search([("model_id", "=", model.id)])
+
+        return self.env['report'].get_action(self, config.action_id.report_name)
